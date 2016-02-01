@@ -17,7 +17,8 @@ public class GameController : MonoBehaviour
 
     public AudioClip gameOver, win;
 
-    AudioSource cameraAudio; 
+    AudioSource cameraAudio;
+   [HideInInspector] public bool won = false;
 
     void Awake()
     {
@@ -41,6 +42,7 @@ public class GameController : MonoBehaviour
 
     public void Win()
     {
+        won = true;
         Paddle.paddle.allowedToMove = false;
         Ball.ball.gameObject.SetActive(false);
         StartCoroutine(ShowMessage(winMessages[Random.Range(0, winMessages.Length)], win));
